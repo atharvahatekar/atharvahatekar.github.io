@@ -54,7 +54,10 @@ python -m http.server 8000
 ├── theme-init.js             # Blocks FOUC — sets saved theme before paint
 ├── loader.js                 # GitHub integration, caching, theme toggle, nav
 ├── tests/run_tests.sh        # CI checks: structure, assets, SEO, contrast
-├── tools/optimize-photos.py  # Authoring helper: resize + WebP the hero photos
+├── tools/                    # Authoring helpers (Pillow), not part of the site
+│   ├── optimize-photos.py    #   resize + WebP the hero photos
+│   ├── make-preview-card.py  #   render content/preview-card.png (Open Graph)
+│   └── make-linkedin-banner.py  # render content/linkedin-banner.png (1584x396)
 └── content/
     ├── icon.svg              # Favicon (AH monogram)
     ├── preview-card.png      # Open Graph / social preview card
@@ -139,6 +142,20 @@ and flash.
 Why WebP-only with no JPEG fallback: the stylesheet already relies on
 `color-mix()`, which has narrower browser support than WebP, so a fallback
 would buy nothing.
+
+### LinkedIn banner
+
+`content/linkedin-banner.png` is generated, not hand-made, and isn't
+referenced by any page — it just lives here so it's versioned alongside the
+brand it matches:
+
+```bash
+python tools/make-linkedin-banner.py          # 1584x396
+python tools/make-linkedin-banner.py --seed 7 # relight a different path
+```
+
+The network graphic sits on the left because LinkedIn overlays the profile
+photo across the banner's lower-left corner; all text is kept clear of it.
 
 ### Adding the publication link
 
