@@ -146,8 +146,8 @@
             'code.mission': '"Von chaotischen Daten zu verlässlichen Vorhersagen, in großem Maßstab."',
 
             'status.online': 'Systemstatus: Online',
-            'status.cottbus': 'Germany',
-            'footer.copy': '© 2026 Atharva Hatekar. Mit Love ❤️ gebaut.',
+            'status.cottbus': 'Deutschland',
+            'footer.copy': '© 2026 Atharva Hatekar. Mit Liebe ❤️ gebaut.',
 
             'projects.label': 'Repository-Feed // GitHub API',
             'projects.title_line1': 'OPEN SOURCE',
@@ -168,9 +168,9 @@
             'cv.title_line2': 'ERFAHRUNG',
             'cv.subtitle': 'Vier Jahre, in denen aus Rohdaten Entscheidungen wurden — von Management-Dashboards bis zu Machine Learning im Produktivbetrieb.',
             'cv.briefing_label': 'System-Briefing',
-            'cv.briefing_text': 'Rollen, Erfolge und Tech-Stacks — dazu eine Skill-Density-Heatmap und der akademische Werdegang.',
+            'cv.briefing_text': 'Werdegang mit Rollen, Erfolgen und Tech-Stacks — dazu eine Skill-Density-Heatmap.',
             'cv.experience': 'Erfahrung',
-            'cv.years': '4+ J.',
+            'cv.years': '4+ Jahre',
             'cv.base': 'Standort',
             'cv.loading': '_lade_erfahrungsdaten...',
             'cv.download': '[ LEBENSLAUF_PDF_HERUNTERLADEN ]',
@@ -537,7 +537,6 @@
             achievements: [
                 'Landesrang 2.757 von über 157.000 Teilnehmenden im GATE — Top 1,76% (98,24. Perzentil) bundesweit.',
                 'Zweifache Goldmedaille im American Football und Rugby bei den nationalen Meisterschaften.',
-                'Tritt an Wochenenden live als Musiker auf — Gesang, Gitarre, Schlagzeug.',
             ],
         },
     };
