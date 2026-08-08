@@ -159,8 +159,10 @@ def main():
     d.line([(TX, 205), (TX + 92, 205)], fill=ACCENT, width=3)
 
     tracked(d, (TX, 228), "DATA SCIENTIST  //  AI ENGINEER", f_role, ACCENT, 2.2)
-    tracked(d, (TX, 262), "LLMs from scratch  ·  Agentic RAG  ·  Time-series anomaly detection",
-            f_url, SECOND, 0.4)
+    # Same line as mission() in the site's atharva.py block, so banner,
+    # portfolio and profile all make the same claim.
+    tracked(d, (TX, 262), "From messy data to reliable predictions, at scale.",
+            f_url, SECOND, 0.6)
     tracked(d, (TX, 296), "atharvahatekar.github.io", f_url, MUTED, 1.2)
 
     # ── Frame, matching the site's cards and the OG image.
