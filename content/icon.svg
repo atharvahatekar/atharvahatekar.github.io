@@ -1,9 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <circle cx="256" cy="256" r="256" fill="#1A1D16" />
-  <!-- A -->
-  <path d="M 118 348 L 186 164 L 254 348 M 148 286 L 224 286"
-        fill="none" stroke="#8BAA47" stroke-width="42" stroke-linecap="round" stroke-linejoin="round" />
-  <!-- H -->
-  <path d="M 306 164 L 306 348 M 400 164 L 400 348 M 306 256 L 400 256"
-        fill="none" stroke="#8BAA47" stroke-width="42" stroke-linecap="round" stroke-linejoin="round" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Atharva Hatekar">
+  <!-- AH monogram. Flat (butt) caps and mitre joins give the letterforms a
+       cut, monospace feel that matches the site's terminal motif. Strokes are
+       deliberately heavy and the letters fill the canvas so the mark still
+       resolves at a 16px favicon size. -->
+  <rect width="512" height="512" rx="104" fill="#0d120d"/>
+  <rect x="8" y="8" width="496" height="496" rx="98" fill="none"
+        stroke="#ccff00" stroke-opacity="0.22" stroke-width="8"/>
+  <g fill="none" stroke="#ccff00" stroke-width="52"
+     stroke-linecap="butt" stroke-linejoin="miter">
+    <!-- A -->
+    <path d="M84 378 L156 150 L228 378"/>
+    <path d="M116 300 H196"/>
+    <!-- H -->
+    <path d="M292 150 V378"/>
+    <path d="M428 150 V378"/>
+    <path d="M292 264 H428"/>
+  </g>
 </svg>
