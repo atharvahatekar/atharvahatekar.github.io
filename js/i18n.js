@@ -38,7 +38,7 @@
             'skills.ai': 'AI Engineering',
             'skills.mlops': 'MLOps & Infrastructure',
             'skills.obs': 'Evaluation & Observability',
-            'skills.proj': 'Project & Management',
+            'skills.proj': 'Analytics & Delivery',
 
             // Home projects
             'home.projects.label': 'Repository Feed // Featured',
@@ -86,7 +86,7 @@
             'cv.title_line2': 'EXPERIENCE',
             'cv.subtitle': 'Four years turning raw data into decisions — from executive dashboards to machine learning running in production.',
             'cv.briefing_label': 'System Briefing',
-            'cv.briefing_text': 'Roles, achievements, and tech stacks — plus a skill density heatmap and the academic record.',
+            'cv.briefing_text': 'Work history with roles, achievements, and tech stacks — plus a skill density heatmap.',
             'cv.experience': 'Experience',
             'cv.years': '4+ yrs',
             'cv.base': 'Base',
@@ -126,7 +126,7 @@
             'skills.ai': 'AI Engineering',
             'skills.mlops': 'MLOps & Infrastruktur',
             'skills.obs': 'Evaluation & Observability',
-            'skills.proj': 'Projekt & Management',
+            'skills.proj': 'Analytics & Delivery',
 
             'home.projects.label': 'Repository-Feed // Ausgewählt',
             'home.projects.explore': 'alle_ansehen',
@@ -493,8 +493,8 @@
             publication: {
                 venue: 'International Journal of Advance Research in Engineering, Science & Management (IJARESM)',
                 date: '11/2022',
-                // Add the paper URL here and a "read_paper ↗" link appears automatically.
-                url: null,
+                url: 'https://www.researchgate.net/publication/395346404_Passenger_Security_Using_Facial_Emotion_Recognition_System',
+                doi: '10.13140/RG.2.2.31418.86726',
             },
             languages: [
                 { name: 'English', level: 'C1' },

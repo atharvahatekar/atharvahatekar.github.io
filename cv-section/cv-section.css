@@ -347,6 +347,15 @@
     margin-right: 8px;
 }
 
+.cv-pub-doi {
+    margin: 10px 0 0;
+    font-family: var(--font-code);
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+    /* A DOI is one long unbreakable token — let it wrap on narrow screens. */
+    overflow-wrap: anywhere;
+}
+
 .cv-pub-link {
     display: inline-block;
     margin-top: 12px;

@@ -180,6 +180,10 @@
                 h('span', { class: 'year' }, [pub.date]),
                 h('p', { class: 'title' }, [pub.title]),
                 h('p', { class: 'company' }, [pub.venue]),
+                pub.doi && h('p', { class: 'cv-pub-doi' }, [
+                    h('span', { class: 'cv-note-key' }, ['DOI']),
+                    pub.doi,
+                ]),
                 pub.url && h('a', {
                     class: 'cv-pub-link',
                     href: pub.url,
