@@ -738,15 +738,9 @@
     // Measured live rather than hardcoded, because which greeting is tallest
     // depends on the viewport width and on the display webfont's metrics.
     // ─────────────────────────────────────────────────────────────
-    function initHeroNameSizer(staticText) {
+    function initHeroNameSizer() {
         const sizer = document.querySelector('.hero-name-sizer');
         if (!sizer) return;
-
-        // Not cycling: reserve exactly the one greeting that will be shown.
-        if (staticText) {
-            sizer.textContent = staticText;
-            return;
-        }
 
         function measure() {
             let tallest = GREETINGS[0].text;
@@ -780,24 +774,24 @@
 
     // ─────────────────────────────────────────────────────────────
     // Hero typewriter: cycles through all greetings, loops forever.
-    // Respects prefers-reduced-motion (shows current UI-lang greeting, static).
+    //
+    // This is the one deliberate exception to the site's "respect
+    // prefers-reduced-motion" rule, and it runs on every device.
+    //
+    // Why: typing text in place carries none of the vestibular risk the
+    // preference exists to prevent — there is no parallax, scaling, scrolling
+    // or large-scale movement. Meanwhile both iOS Low Power/Reduce Motion and
+    // Android Battery Saver switch the flag on routinely, so it is a poor
+    // signal for "this person dislikes animation". Honouring it here froze the
+    // greeting mid-hero next to a still-blinking cursor, which read as a bug
+    // rather than as a considerate default.
+    //
+    // Every other animation — boot screen, hero reveal, photo cross-fade,
+    // scroll reveals, the aurora — still honours the preference.
     // ─────────────────────────────────────────────────────────────
     function initTypewriterCycle() {
         const el = document.getElementById('typewriter');
         if (!el) return;
-
-        const reduceMotion = window.matchMedia &&
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        if (reduceMotion) {
-            // Pick the UI-language greeting if we have one, else English.
-            const ui = getLang();
-            const pick = GREETINGS.find(g => g.lang === ui) || GREETINGS[0];
-            el.textContent = pick.text;
-            el.setAttribute('dir', pick.dir);
-            initHeroNameSizer(pick.text + '_');
-            return;
-        }
 
         initHeroNameSizer();
 

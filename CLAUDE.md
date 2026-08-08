@@ -37,7 +37,10 @@ bash tests/run_tests.sh   # CI test suite
 - No frameworks, no build tools — keep it vanilla
 - Editorial dark aesthetic: deep green-black bg (`#080c08`), neon yellow-green accent (`#ccff00`), serif display headings (`Playfair Display`) + monospace terminals (`Fira Code`)
 - Theme toggle: `[data-theme="light"]` selector overrides in CSS
-- Respect `prefers-reduced-motion` for every animation
+- Respect `prefers-reduced-motion` for every animation, with one documented
+  exception: the hero typewriter always runs (see `initTypewriterCycle` in
+  `js/i18n.js` for the reasoning). Freezing it left the hero looking broken on
+  phones where the flag is set by Battery Saver rather than chosen.
 - CSP: no inline `style=` attributes in HTML (blocked; tests enforce this).
   If you edit the JSON-LD block in `index.html`, recompute its sha256 CSP hash
   (`tests/run_tests.sh` verifies it).
