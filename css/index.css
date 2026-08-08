@@ -345,6 +345,22 @@
     user-select: none;
 }
 
+/* The greeting is split across two fixed lines, with the name always on the
+   second. As one wrapping line, the text rewrapped while it typed — a word
+   would jump down a line mid-word and jump back on the next greeting, which
+   read as a flash. An explicit break removes the reflow entirely. */
+.hero-line {
+    display: block;
+
+    /* The heading sets line-height: 0.92, which is fine for a single line but
+       makes two stacked lines collide. Measured against Playfair Display 700:
+       the deepest line-one descender is the "j" in "Salut, je suis" at 0.19em
+       below the baseline, and "Atharva !" reaches 0.78em above its own — so
+       baselines must sit at least 0.97em apart just to touch. 0.92 overlapped
+       by 0.05em; 1.12 leaves a 0.15em gap. */
+    line-height: 1.12;
+}
+
 /* =============================================
    SKILL CHIP HOVER UPGRADE
    ============================================= */

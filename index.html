@@ -75,8 +75,11 @@
                          holds the heading at its worst-case height so the cycling
                          typewriter never reflows the hero. Filled by js/i18n.js. -->
                     <h1 class="hero-display-name">
-                        <span class="hero-name-sizer" aria-hidden="true"></span>
-                        <span class="hero-name-live"><span id="typewriter"></span><span class="cursor">_</span></span>
+                        <span class="hero-name-sizer" aria-hidden="true"><span class="hero-line"></span><span class="hero-line"></span></span>
+                        <span class="hero-name-live">
+                            <span class="hero-line" id="tw-line1"><span class="tw-text" id="typewriter"></span></span>
+                            <span class="hero-line" id="tw-line2"><span class="tw-text"></span><span class="cursor">_</span></span>
+                        </span>
                     </h1>
 
                     <!-- Unified Python code box -->

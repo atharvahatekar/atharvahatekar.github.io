@@ -559,15 +559,19 @@
     // ─────────────────────────────────────────────────────────────
     // Greetings used by the looping hero typewriter (not UI state).
     // ─────────────────────────────────────────────────────────────
+    // Split across two fixed lines: the greeting phrase types on line one, the
+    // name always lands on line two. Keeping the break explicit stops the
+    // heading rewrapping mid-type, which looked like a flicker on narrow
+    // screens as a word jumped between lines.
     const GREETINGS = [
-        { lang: 'en', text: 'Hi, I am Atharva !',        dir: 'ltr' },
-        { lang: 'de', text: 'Hallo, ich bin Atharva !',   dir: 'ltr' },
-        { lang: 'fr', text: 'Salut, je suis Atharva !',   dir: 'ltr' },
-        { lang: 'es', text: '¡Hola, soy Atharva !',       dir: 'ltr' },
-        { lang: 'pt', text: 'Olá, eu sou o Atharva !',    dir: 'ltr' },
-        { lang: 'it', text: 'Ciao, sono Atharva !',       dir: 'ltr' },
-        { lang: 'sv', text: 'Hej, jag är Atharva !',      dir: 'ltr' }, // Swedish
-        { lang: 'pl', text: 'Cześć, jestem Atharva !',    dir: 'ltr' }, // Polish
+        { lang: 'en', l1: 'Hi, I am',        l2: 'Atharva !', dir: 'ltr' },
+        { lang: 'de', l1: 'Hallo, ich bin',  l2: 'Atharva !', dir: 'ltr' },
+        { lang: 'fr', l1: 'Salut, je suis',  l2: 'Atharva !', dir: 'ltr' },
+        { lang: 'es', l1: '¡Hola, soy',      l2: 'Atharva !', dir: 'ltr' },
+        { lang: 'pt', l1: 'Olá, eu sou o',   l2: 'Atharva !', dir: 'ltr' },
+        { lang: 'it', l1: 'Ciao, sono',      l2: 'Atharva !', dir: 'ltr' },
+        { lang: 'sv', l1: 'Hej, jag är',     l2: 'Atharva !', dir: 'ltr' }, // Swedish
+        { lang: 'pl', l1: 'Cześć, jestem',   l2: 'Atharva !', dir: 'ltr' }, // Polish
     ];
 
     // ─────────────────────────────────────────────────────────────
@@ -742,19 +746,26 @@
         const sizer = document.querySelector('.hero-name-sizer');
         if (!sizer) return;
 
+        // The sizer mirrors the live markup: two block lines.
+        const s1 = sizer.children[0];
+        const s2 = sizer.children[1];
+        if (!s1 || !s2) return;
+
         function measure() {
-            let tallest = GREETINGS[0].text;
+            let best = GREETINGS[0];
             let maxHeight = 0;
             GREETINGS.forEach(g => {
-                // Include the cursor glyph — it can tip a line into wrapping.
-                sizer.textContent = g.text + '_';
+                s1.textContent = g.l1;
+                // Include the caret glyph — it can tip a line into wrapping.
+                s2.textContent = g.l2 + '_';
                 const h = sizer.offsetHeight;
                 if (h > maxHeight) {
                     maxHeight = h;
-                    tallest = g.text + '_';
+                    best = g;
                 }
             });
-            sizer.textContent = tallest;
+            s1.textContent = best.l1;
+            s2.textContent = best.l2 + '_';
         }
 
         measure();
@@ -795,6 +806,15 @@
 
         initHeroNameSizer();
 
+        const line1 = document.getElementById('tw-line1');
+        const line2 = document.getElementById('tw-line2');
+        const live = document.querySelector('.hero-name-live');
+        const cursor = document.querySelector('.cursor');
+        if (!line1 || !line2) return;
+
+        const t1 = line1.querySelector('.tw-text');
+        const t2 = line2.querySelector('.tw-text');
+
         const TYPE_SPEED = 90;    // ms per char typing
         const ERASE_SPEED = 45;   // ms per char erasing
         const HOLD_AFTER = 1400;  // pause after fully typed
@@ -802,42 +822,65 @@
 
         let idx = 0;
 
-        function typeOne() {
-            const g = GREETINGS[idx];
-            el.setAttribute('dir', g.dir);
-            el.setAttribute('lang', g.lang);
-            // Use Array.from to split by grapheme for multi-byte chars (CJK, Devanagari-safe)
-            const chars = Array.from(g.text);
-            let i = 0;
-            el.textContent = '';
+        // Keep the caret at the end of whichever line is being written.
+        function caretTo(lineEl) {
+            if (cursor && cursor.parentNode !== lineEl) lineEl.appendChild(cursor);
+        }
 
-            function step() {
+        // Array.from splits by code point, so multi-byte characters are never
+        // torn in half mid-type.
+        function typeInto(target, text, done) {
+            const chars = Array.from(text);
+            let i = 0;
+            target.textContent = '';
+            (function step() {
                 if (i < chars.length) {
-                    el.textContent += chars[i];
-                    i++;
+                    target.textContent += chars[i++];
                     setTimeout(step, TYPE_SPEED);
                 } else {
-                    setTimeout(eraseOne, HOLD_AFTER);
+                    done();
                 }
+            })();
+        }
+
+        function eraseFrom(target, done) {
+            const chars = Array.from(target.textContent);
+            let i = chars.length;
+            (function step() {
+                if (i > 0) {
+                    target.textContent = chars.slice(0, --i).join('');
+                    setTimeout(step, ERASE_SPEED);
+                } else {
+                    done();
+                }
+            })();
+        }
+
+        function typeOne() {
+            const g = GREETINGS[idx];
+            if (live) {
+                live.setAttribute('dir', g.dir);
+                live.setAttribute('lang', g.lang);
             }
-            step();
+            t2.textContent = '';
+            caretTo(line1);
+            typeInto(t1, g.l1, function () {
+                caretTo(line2);
+                typeInto(t2, g.l2, function () {
+                    setTimeout(eraseOne, HOLD_AFTER);
+                });
+            });
         }
 
         function eraseOne() {
-            const current = Array.from(el.textContent);
-            let i = current.length;
-
-            function step() {
-                if (i > 0) {
-                    i--;
-                    el.textContent = current.slice(0, i).join('');
-                    setTimeout(step, ERASE_SPEED);
-                } else {
+            // Unwind in reverse so the caret retreats the way it arrived.
+            eraseFrom(t2, function () {
+                caretTo(line1);
+                eraseFrom(t1, function () {
                     idx = (idx + 1) % GREETINGS.length;
                     setTimeout(typeOne, PAUSE_BETWEEN);
-                }
-            }
-            step();
+                });
+            });
         }
 
         typeOne();
