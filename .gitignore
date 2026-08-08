@@ -1,0 +1,7 @@
+# Local-only originals. These are full-resolution masters kept for re-cropping;
+# they must never ship to GitHub Pages, which serves everything in the repo.
+content/img/profile/archieve/
+
+# Python bytecode from tools/
+__pycache__/
+*.pyc

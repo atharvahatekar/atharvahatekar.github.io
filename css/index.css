@@ -1,0 +1,447 @@
+/* =============================================
+   HOMEPAGE SECTION SPACING — tighter than global
+   ============================================= */
+#hero {
+    padding-top: 32px;
+    padding-bottom: 16px;
+}
+
+.section {
+    padding: 36px 0;
+}
+
+/* =============================================
+   BLINKING CURSOR
+   ============================================= */
+/* Blinking Cursor Animation */
+.cursor {
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* =============================================
+   PYTHON SYNTAX COLOURS  (GitHub Dark palette)
+   ============================================= */
+.py-kw      { color: #ff7b72; }                        /* keywords: def, return, from, import, class */
+.py-fn      { color: #d2a8ff; }                        /* function / method names */
+.py-self    { color: #ffa657; }                        /* self parameter */
+.py-type    { color: #79c0ff; }                        /* type hints: str, list, int */
+.py-str     { color: #a5d6ff; }                        /* string literals */
+.py-num     { color: #79c0ff; }                        /* numeric literals */
+.py-op      { color: var(--text-secondary); }          /* operators */
+.py-comment { color: #8b949e; font-style: italic; }    /* # comments */
+
+.py-blank { display: block; height: 0.6em; }           /* blank line between blocks */
+.py-l1    { padding-left: 1.5em; }                     /* 1 indent */
+.py-l2    { padding-left: 3em; }                       /* 2 indents */
+
+/* =============================================
+   HERO LAYOUT
+   ============================================= */
+.hero-text {
+    font-family: 'Fira Code', monospace;
+    flex: 1;
+}
+
+.hero-heading {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-family: var(--font-code);
+    color: var(--text-secondary);
+}
+
+/* Hero subtitle (tagline below display name) */
+.hero-subtitle {
+    font-family: var(--font-code);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-top: 16px;
+    line-height: 1.8;
+    width: 100%;
+    max-width: 620px;
+}
+
+/* =============================================
+   CODE BOX  (IDE-style window)
+   ============================================= */
+.code-box {
+    display: inline-block;
+    width: 100%;
+    max-width: 620px;
+    border-radius: 0;
+    border: 1px solid rgba(204, 255, 0, 0.15);
+    background: rgba(8, 12, 8, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    overflow: hidden;
+    text-align: left !important;
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+/* Title bar with traffic-light dots + filename */
+.code-box-tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(204, 255, 0, 0.1);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.code-box-dots {
+    display: flex;
+    gap: 5px;
+}
+
+.code-box-dots span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.code-box-dots span:nth-child(1) { background: #ff5f57; }
+.code-box-dots span:nth-child(2) { background: #febc2e; }
+.code-box-dots span:nth-child(3) { background: #28c840; }
+
+/* Code body */
+.code-box-body {
+    padding: 14px 18px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    overflow-x: hidden;
+    text-align: left !important;
+}
+
+.code-box-body p {
+    margin: 0;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    text-align: left !important;
+}
+
+/* =============================================
+   SKILLS SECTION
+   ============================================= */
+.skills-code-block {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    line-height: 2;
+}
+
+.skill-row {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 0;
+    margin-bottom: 10px;
+}
+
+.skill-key {
+    color: #ffa657;
+    min-width: 140px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding-top: 4px;
+}
+
+.skill-eq {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding-top: 4px;
+}
+
+.skill-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 0;
+}
+
+/* Base chip */
+.skill-chip {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 0;
+    font-size: 0.78rem;
+    font-family: 'Fira Code', monospace;
+    border: 1px solid;
+    transition: opacity 0.2s;
+}
+
+.skill-chip:hover { opacity: 0.75; }
+
+/* Category colours */
+.chip-lang  { color: #79c0ff; border-color: rgba(121, 192, 255, 0.35); background: rgba(121, 192, 255, 0.08); }
+.chip-cloud { color: #d2a8ff; border-color: rgba(210, 168, 255, 0.35); background: rgba(210, 168, 255, 0.08); }
+.chip-data  { color: #ffa657; border-color: rgba(255, 166, 87,  0.35); background: rgba(255, 166, 87,  0.08); }
+.chip-ml    { color: #3fb950; border-color: rgba(63,  185,  80,  0.35); background: rgba(63,  185,  80,  0.08); }
+.chip-mon   { color: #8b949e; border-color: rgba(139, 148, 158, 0.35); background: rgba(139, 148, 158, 0.08); }
+.chip-pm    { color: #ff7b72; border-color: rgba(255, 123, 114, 0.35); background: rgba(255, 123, 114, 0.08); }
+
+/* --- LIGHT THEME: Skill chip overrides (darkened for readability) --- */
+[data-theme="light"] .chip-lang  { color: #0550ae; border-color: rgba(5, 80, 174, 0.3);   background: rgba(5, 80, 174, 0.08); }
+[data-theme="light"] .chip-cloud { color: #6639ba; border-color: rgba(102, 57, 186, 0.3);  background: rgba(102, 57, 186, 0.08); }
+[data-theme="light"] .chip-data  { color: #953800; border-color: rgba(149, 56, 0, 0.3);    background: rgba(149, 56, 0, 0.08); }
+[data-theme="light"] .chip-ml    { color: #1a7f37; border-color: rgba(26, 127, 55, 0.3);   background: rgba(26, 127, 55, 0.08); }
+[data-theme="light"] .chip-mon   { color: #57606a; border-color: rgba(87, 96, 106, 0.3);   background: rgba(87, 96, 106, 0.08); }
+[data-theme="light"] .chip-pm    { color: #a0111f; border-color: rgba(160, 17, 31, 0.3);   background: rgba(160, 17, 31, 0.08); }
+
+/* --- LIGHT THEME: Skill key override --- */
+[data-theme="light"] .skill-key  { color: #953800; }
+
+/* --- LIGHT THEME: Code box overrides --- */
+[data-theme="light"] .code-box {
+    background: rgba(248, 246, 240, 0.88);
+    border-color: rgba(61, 122, 0, 0.2);
+}
+[data-theme="light"] .code-box-tab {
+    background: rgba(0, 0, 0, 0.04);
+    border-bottom-color: rgba(61, 122, 0, 0.12);
+}
+
+/* --- LIGHT THEME: Python syntax (GitHub Light palette) --- */
+[data-theme="light"] .py-kw      { color: #a0111f; }
+[data-theme="light"] .py-fn      { color: #6639ba; }
+[data-theme="light"] .py-self    { color: #953800; }
+[data-theme="light"] .py-type    { color: #0550ae; }
+[data-theme="light"] .py-str     { color: #0a3069; }
+[data-theme="light"] .py-num     { color: #0550ae; }
+[data-theme="light"] .py-comment { color: #6e7781; }
+
+/* =============================================
+   SKILLS — Newspaper Grid
+   6-cell tight grid, borders as 1px lines
+   ============================================= */
+.skills-va {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--nav-border);
+    border: 1px solid var(--nav-border);
+}
+
+.skills-va-cell {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: background 0.2s;
+}
+
+.skills-va-cell:hover {
+    background: var(--glass-hover);
+}
+
+.skills-va-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    /* inherits chip color */
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+.skills-va-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .skills-va { grid-template-columns: 1fr 1fr; }
+}
+
+/* Below ~560px two columns leave ~150px per cell, which forces nearly every
+   chip onto its own line and pushes the widest ones ("Time-Series Forecasting",
+   "Vector Databases") past the viewport. One column reads better and removes
+   the overflow entirely. */
+@media (max-width: 560px) {
+    .skills-va { grid-template-columns: 1fr; }
+
+    /* 0.65rem is ~10.4px — too small to read comfortably on a phone. */
+    .skills-va-label { font-size: 0.72rem; }
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 768px) {
+    .code-box {
+        max-width: 100%;
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    .code-box-body {
+        font-size: 0.84rem;
+        padding: 12px 14px;
+    }
+
+    .py-l1 { padding-left: 1em; }
+    .py-l2 { padding-left: 2em; }
+
+    .hero-heading {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+
+    .hero-subtitle {
+        text-align: left;
+        font-size: 0.7rem;
+        margin-top: 12px;
+    }
+
+    .skill-key { min-width: unset; font-size: 0.78rem; white-space: nowrap; }
+}
+
+/* =============================================
+   HERO TYPOGRAPHY — More dramatic
+   ============================================= */
+.hero-display-name {
+    font-size: clamp(2.8rem, 4.8vw, 4.6rem);
+    letter-spacing: -2px;
+    line-height: 0.92;
+    white-space: normal;
+    text-wrap: balance;
+
+    /* Stack the hidden sizer and the live text in one cell, so the heading is
+       always as tall as its longest greeting. Without this the <h1> flips
+       between one and two lines mid-cycle and — because .hero-layout is
+       align-items: end — drags the whole hero row, photo included. */
+    display: grid;
+}
+
+.hero-name-sizer,
+.hero-name-live {
+    grid-area: 1 / 1;
+}
+
+.hero-name-sizer {
+    visibility: hidden;
+    pointer-events: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* =============================================
+   SKILL CHIP HOVER UPGRADE
+   ============================================= */
+.skill-chip {
+    transition:
+        opacity var(--dur-fast) ease,
+        transform var(--dur-fast) var(--ease-out-expo),
+        box-shadow var(--dur-fast) ease;
+}
+.skill-chip:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* =============================================
+   SCROLL REVEAL SYSTEM
+   ============================================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity var(--dur-slow) var(--ease-out-expo),
+        transform var(--dur-slow) var(--ease-out-expo);
+    transition-delay: calc(var(--stagger-index, 0) * 80ms);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =============================================
+   HERO LOAD REVEAL (staged on page load)
+   Progressive enhancement: JS adds .hero-entry to enable the animation.
+   Without JS, or before JS runs, elements are fully visible.
+   ============================================= */
+.hero-entry {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.7s var(--ease-out-expo),
+        transform 0.8s var(--ease-out-expo);
+}
+
+.hero-entry.hero-loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =============================================
+   LIGHT THEME — EXPLICIT HIGH-CONTRAST OVERRIDES
+   Guarantees readability on real screens regardless of inheritance.
+   ============================================= */
+[data-theme="light"] .hero-display-name {
+    color: #0c0f0a;
+}
+
+[data-theme="light"] .section-label {
+    color: #1a5c00;
+    opacity: 1;
+}
+
+[data-theme="light"] .hero-subtitle {
+    color: #353d30;
+}
+
+[data-theme="light"] .hero-panel-left .code-box {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(26, 92, 0, 0.22);
+}
+
+/* Ensure nav text stays fully dark on light bg */
+[data-theme="light"] nav,
+[data-theme="light"] .nav-brand-name,
+[data-theme="light"] .nav-brand-tagline,
+[data-theme="light"] .nav-links a {
+    color: #0c0f0a;
+}
+
+[data-theme="light"] .nav-links a {
+    border-bottom-color: transparent;
+}
+
+/* =============================================
+   REDUCED MOTION SAFETY
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    /* Disable hero entry animation — show immediately */
+    .hero-entry {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}

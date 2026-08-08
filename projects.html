@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; connect-src 'self' https://api.github.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Open-source AI and machine learning projects by Atharva Hatekar — language models built from scratch, agentic RAG systems and MLOps pipelines, fetched live from GitHub.">
+    <link rel="canonical" href="https://atharvahatekar.github.io/projects.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://atharvahatekar.github.io/projects.html">
+    <meta property="og:title" content="Atharva Hatekar | Projects">
+    <meta property="og:description" content="Open-source AI and machine learning projects by Atharva Hatekar — fetched live from GitHub.">
+    <meta property="og:image" content="https://atharvahatekar.github.io/content/preview-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://atharvahatekar.github.io/content/preview-card.png">
+    <title data-i18n="title.projects">Atharva | Projects</title>
+    <link rel="icon" type="image/svg+xml" href="content/icon.svg">
+    <script src="theme-init.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <a href="index.html" class="nav-brand">
+                <span class="nav-brand-name">Atharva Hatekar</span>
+                <span class="nav-brand-tagline" data-i18n="nav.tagline">Data Scientist // Germany</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" data-i18n="nav.about">About</a>
+                <a href="projects.html" data-i18n="nav.projects">Projects</a>
+                <a href="cv.html" data-i18n="nav.resume">Resume</a>
+            </div>
+            <div class="nav-controls">
+                <button id="menu-toggle" class="menu-toggle" data-i18n-attr="aria-label:nav.menu_aria" aria-label="Toggle navigation">☰</button>
+                <button id="theme-toggle" data-i18n-attr="title:nav.theme_title" title="Switch Theme">☀</button>
+            </div>
+        </nav>
+
+        <section class="section">
+            <div class="page-hero">
+                <div class="page-hero-left">
+                    <span class="page-hero-label" data-i18n="projects.label">Repository Feed // GitHub API</span>
+                    <h1 class="page-hero-title"><span data-i18n="projects.title_line1">OPEN SOURCE</span><br><span data-i18n="projects.title_line2">/ PROJECTS</span></h1>
+                    <p class="page-hero-subtitle" data-i18n="projects.subtitle">Language models built from scratch, agentic RAG systems, and end-to-end MLOps pipelines.</p>
+                </div>
+                <div class="page-hero-meta">
+                    <span class="page-hero-meta-label" data-i18n="projects.briefing_label">System Briefing</span>
+                    <p class="page-hero-meta-text" data-i18n="projects.briefing_text">Repositories fetched live from the GitHub API, curated and ordered by depth.</p>
+                    <div class="page-hero-stats">
+                        <div>
+                            <span class="page-hero-stat-label" data-i18n="projects.source">Source</span>
+                            <span class="page-hero-stat-value">GitHub</span>
+                        </div>
+                        <div>
+                            <span class="page-hero-stat-label" data-i18n="projects.status">Status</span>
+                            <span class="page-hero-stat-value page-hero-stat-value--code" data-i18n="projects.status_online">Online</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="terminal-cmd-line" data-i18n="projects.git_cmd">
+                > git fetch origin main --sort=depth
+            </p>
+
+            <div class="proj-list" id="repo-grid">
+                <p class="loading-msg" data-i18n="projects.loading">_fetching_data_from_github...</p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-copy footer-copy--center" data-i18n="footer.copy">
+                &copy; 2026 Atharva Hatekar • Built with ❤️
+            </div>
+        </footer>
+    </div>
+
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <script src="js/i18n.js"></script>
+    <script src="loader.js"></script>
+    <script src="js/palette.js"></script>
+</body>
+
+</html>
