@@ -18,6 +18,7 @@
     <title data-i18n="title.resume">Atharva | Resume</title>
     <link rel="icon" type="image/svg+xml" href="content/icon.svg">
     <script src="theme-init.js"></script>
+    <script src="boot-init.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fira+Code:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
@@ -27,6 +28,18 @@
 </head>
 
 <body>
+
+    <!-- Boot screen: first visit of a session only. Hidden unless boot-init.js
+         sets data-booting on <html>, so it can never trap a no-JS visitor.
+         aria-hidden because the real page content sits behind it. -->
+    <div class="boot-screen" id="boot-screen" aria-hidden="true">
+        <div class="boot-inner">
+            <p class="boot-cmd"><span class="boot-ps1">atharva@portfolio</span><span class="boot-path">:~</span><span class="boot-dollar">$</span><span id="boot-typed"></span><span class="boot-caret">_</span></p>
+            <ul class="boot-log" id="boot-log"></ul>
+            <div class="boot-bar"><span class="boot-bar-fill" id="boot-bar-fill"></span></div>
+            <p class="boot-pct" id="boot-pct">0%</p>
+        </div>
+    </div>
     <div class="container">
         <nav>
             <a href="index.html" class="nav-brand">
@@ -88,6 +101,7 @@
 
     <div class="scroll-progress" aria-hidden="true"></div>
 
+    <script src="js/boot.js"></script>
     <script src="js/i18n.js"></script>
     <script src="loader.js"></script>
     <script src="js/palette.js"></script>

@@ -2368,3 +2368,138 @@ nav {
         height: 46px;
     }
 }
+
+/* ============================================================
+   BOOT SCREEN
+   Terminal boot sequence shown over the page on the first visit
+   of a session. Hidden unless boot-init.js has set data-booting
+   on <html>, so no-JS visitors never see a stuck overlay.
+   ============================================================ */
+.boot-screen {
+    display: none;
+}
+
+[data-booting] .boot-screen {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;          /* above nav (1000) and the ⌘K palette (2000) */
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--bg-color);
+    background-image: radial-gradient(
+        60% 50% at 30% 40%,
+        color-mix(in oklab, var(--accent-color) 7%, transparent),
+        transparent 70%);
+    opacity: 1;
+    transition: opacity 0.42s var(--ease-out-expo);
+}
+
+/* Keep the page from scrolling underneath while the overlay is up. */
+[data-booting] body {
+    overflow: hidden;
+}
+
+.boot-screen.is-done {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.boot-inner {
+    width: 100%;
+    max-width: 460px;
+    font-family: var(--font-code);
+    font-size: 0.85rem;
+    line-height: 1.9;
+}
+
+.boot-cmd {
+    color: var(--text-primary);
+    margin: 0 0 10px;
+    word-break: break-word;
+}
+
+.boot-ps1 { color: var(--accent-color); }
+.boot-path { color: var(--text-secondary); }
+.boot-dollar { color: var(--text-secondary); margin-right: 6px; }
+
+.boot-caret {
+    color: var(--accent-color);
+    animation: blink 1s step-end infinite;
+}
+
+.boot-log {
+    list-style: none;
+    margin: 0 0 20px;
+    padding: 0;
+    min-height: calc(5 * 1.9em);   /* reserve all five rows so nothing jumps */
+    color: var(--text-secondary);
+}
+
+.boot-log li {
+    /* Each line fades up as it is appended. */
+    animation: boot-line 0.28s var(--ease-out-expo) both;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@keyframes boot-line {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.boot-step-name { color: var(--text-secondary); }
+.boot-step-dots { color: var(--text-muted); }
+.boot-step-ok   { color: var(--accent-color); }
+
+.boot-bar {
+    height: 3px;
+    background: color-mix(in oklab, var(--text-muted) 40%, transparent);
+    overflow: hidden;
+}
+
+.boot-bar-fill {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: var(--accent-color);
+    box-shadow: 0 0 12px var(--accent-glow);
+    /* Scale rather than animate width: transitioning width forces a layout
+       pass every frame, while a transform is handled by the compositor. */
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.28s var(--ease-out-expo);
+}
+
+.boot-pct {
+    margin: 8px 0 0;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    text-align: right;
+}
+
+/* Failsafe: if boot.js never runs (blocked, 404, syntax error in a future
+   edit), this animation still hides the overlay so the site is never
+   permanently covered. boot.js normally finishes long before 4s. */
+[data-booting] .boot-screen {
+    animation: boot-failsafe 0s linear 4s forwards;
+}
+
+@keyframes boot-failsafe {
+    to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+@media (max-width: 480px) {
+    .boot-inner { font-size: 0.78rem; }
+    .boot-log li { font-size: 0.74rem; }
+}
+
+/* The overlay is motion for its own sake — never show it to visitors who
+   asked for less. boot-init.js already skips it; this is belt and braces. */
+@media (prefers-reduced-motion: reduce) {
+    [data-booting] .boot-screen { display: none; }
+    [data-booting] body { overflow: visible; }
+}
