@@ -700,6 +700,14 @@ section + section::before {
     align-items: flex-end;
     justify-content: center;
     padding: 48px 0 48px 0;
+
+    /* .hero-layout is align-items: end, which pinned the photo to the bottom
+       and therefore tied its position to the height of the text column beside
+       it — when the greeting became two lines the photo dropped by the same
+       ~97px. Centring this column keeps it balanced against the text whatever
+       the heading's height, so copy changes no longer move it.
+       Below 900px this element is display:contents and the rule is inert. */
+    align-self: center;
 }
 
 /* Large display name */
