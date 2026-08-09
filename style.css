@@ -1493,7 +1493,7 @@ section + section::before {
 
     .video-frame video,
     .video-frame img {
-        object-position: 50% 50%;
+        object-position: 50% 25%;
     }
 
     .hero-display-name {
